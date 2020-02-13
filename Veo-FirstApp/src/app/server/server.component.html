@@ -1,1 +1,13 @@
-<p>This's the server component</p>
+<div class="col-xs-6">
+        <app-warning-alert></app-warning-alert>
+</div>
+<div class="col-xs-6">
+        <app-success-alert></app-success-alert>
+</div>
+
+<input type="text" class="form-control" (input)="onSetServerName($event)" >
+<p>{{ serverName }}</p>
+
+<p>The {{'server'}} with ID {{serverId}} is currently {{serverState}} </p>
+<button class="btn btn-primary" [disabled]="!allowServerIncrement" (click)="onServerCreate()">Add server</button>
+<p [innerText]="serverCreation"></p>
