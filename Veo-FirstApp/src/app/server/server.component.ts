@@ -4,28 +4,16 @@ import {Component} from '@angular/core';
     selector:'app-server',
     templateUrl:'./server.component.html'
 })
-export class ServerComponent{
-    allowServerIncrement = false;
-    constructor(){
-        setTimeout(() => {
-            this.allowServerIncrement=true;
-        }, 2000);
-    }
-    serverCreation = "No server was created.";
-    serverName = "";
-    serverId:number =   10;
-    serverState:string = 'up';
+export class ServerComponent {
+    serverId:number = 0;
+    serverState = '';
 
-    getServerState(){
-        return this.serverState;
+    constructor() {
+        this.serverId = parseInt((Math.random() * 10).toString());
+        this.serverState = Math.random() > 0.5 ? 'online' : 'offline';
     }
 
-    onServerCreate(){
-        this.serverCreation = "Server created !";
+    getStateColor(){
+        return this.serverState === 'online' ? 'green' : 'red';
     }
-
-    onSetServerName(event: Event){
-        this.serverName = (<HTMLInputElement>event.target).value;
-    }
-
- }
+}

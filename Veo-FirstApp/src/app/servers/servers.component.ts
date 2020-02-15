@@ -7,11 +7,41 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './servers.component.html',
   styleUrls: ['./servers.component.css']
 })
-export class ServersComponent implements OnInit {
+export class ServersComponent {
 
-  constructor() { }
+  allowServerIncrement = false;
+  serverCreation = "No server was created.";
+  serverName = "";
+  serverCreate = false;
+  userName = '';
+  isDisplayed = false;
+  eventLog = [];
 
-  ngOnInit(): void {
+  constructor(){
+      setTimeout(() => {
+          this.allowServerIncrement=true;
+      }, 2000);
   }
 
+  onServerCreate(){
+      this.serverCreate = true;
+      this.serverCreation = "Server created !";
+  }
+
+  onSetServerName(event: Event){
+      this.serverName = (<HTMLInputElement>event.target).value;
+  }
+  
+  resetUserName(){
+    this.userName='';
+  }
+
+  toggleDetails(){
+    this.isDisplayed = !this.isDisplayed;
+    this.eventLog.push('button clicked : ' + new Date());
+  }
+
+  getRowBgColor(i: number){
+    return i >= 4 ? 'blue' : 'transparent'
+  }
 }
